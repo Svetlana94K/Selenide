@@ -35,10 +35,11 @@ class CardDeliveryOrderTest {
         $("[data-test-id='name'] input").setValue("Куприянов Никита");
         $("[data-test-id='phone'] input").setValue("+78906754545");
         $("[data-test-id='agreement']").click();
-        $("button").click();
-        $("[data-test-id='notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $$("button").findBy(Condition.text("Забронировать")).click();
+        $("[data-test-id='notification']").should(Condition.visible,Duration.ofSeconds(15));
+        $("[data-test-id='notification']").should(Condition.text("Успешно!"));
         $("[data-test-id='notification']")
-                .shouldHave(Condition.text("Вструча успешно забронирована на + planningDate"));
+                .should(Condition.text("Встреча успешно забронирована на " + planningDate));
 
     }
 
